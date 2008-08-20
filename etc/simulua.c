@@ -21,7 +21,7 @@
 /* Simulua specific */
 #define SIMULUA_RELEASE "Simulua 0.1"
 #define SIMULUA_COPYRIGHT "Copyright (C) 2008 Luis Carvalho"
-LUALIB_API void sluaL_openlibs (lua_State *L);
+void sluaL_openlibs (lua_State *L);
 
 
 static lua_State *globalL = NULL;

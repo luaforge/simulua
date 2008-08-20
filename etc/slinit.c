@@ -42,7 +42,7 @@ static const luaL_Reg simulualibs[] = {
 };
 
 
-LUALIB_API void sluaL_openlibs (lua_State *L) {
+void sluaL_openlibs (lua_State *L) {
   const luaL_Reg *lib = lualibs;
   for (; lib->func; lib++) {
     lua_pushcfunction(L, lib->func);
