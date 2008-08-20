@@ -5,16 +5,19 @@ CFLAGS = -Wall -O2
 INCFLAGS = -I/usr/include/lua5.1
 LUALIB = /usr/lib/liblua5.1.a
 LUACFLAGS = -DLUA_USE_LINUX
+BINFLAGS = 
 LIBS = -lm -Wl,-E -ldl -lreadline -lhistory -lncurses
 # MacOSX
 #INCFLAGS = -I/sw/include
 #LUALIB = /sw/lib/liblua.a
 #LUACFLAGS = -DLUA_USE_LINUX
+#BINFLAGS = 
 #LIBS = -lm -lreadline
 # MinGW
 #INCFLAGS = -I/usr/local/include
 #LUALIB = /usr/local/lib/lua51.dll
 #LUACFLAGS = -DLUA_BUILD_AS_DLL
+#BINFLAGS = -s
 #LIBS = -lm
 
 RM = rm -f
@@ -32,8 +35,8 @@ INC = simulua_lc.h
 
 all : $(BIN)
 
-$(BIN) : $(INC) $(OBJS) $(LIBOBJS)
-	$(CC) $(CFLAGS) $(INCFLAGS) -o $@ $^ $(LUALIB) $(LIBS)
+$(BIN) : $(OBJS) $(LIBOBJS)
+	$(CC) $(BINFLAGS) -o $@ $^ $(LUALIB) $(LIBS)
 
 $(INC) : $(LC)
 	$(HEX) $< > $@
@@ -42,7 +45,7 @@ $(LC) : $(LUA)
 	$(LUAC) -o $@ $<
 
 $(LIBOBJS) : %.o : ../lib/%.c
-	$(CC) $(CFLAGS) $(INCFLAGS) -c -o $@ $<
+	$(CC) $(CFLAGS) $(LUACFLAGS) $(INCFLAGS) -c -o $@ $<
 
 $(OBJS) : %.o : %.c
 	$(CC) $(CFLAGS) $(LUACFLAGS) $(INCFLAGS) -c -o $@ $<
