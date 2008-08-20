@@ -1,5 +1,5 @@
 CC = gcc
-CFLAGS = -W -Wall -pedantic -O2
+CFLAGS = -Wall -O2
 
 # Linux
 INCFLAGS = -I/usr/include/lua5.1
@@ -11,6 +11,11 @@ LIBS = -lm -Wl,-E -ldl -lreadline -lhistory -lncurses
 #LUALIB = /sw/lib/liblua.a
 #LUACFLAGS = -DLUA_USE_LINUX
 #LIBS = -lm -lreadline
+# MinGW
+#INCFLAGS = -I/usr/local/include
+#LUALIB = /usr/local/lib/lua51.dll
+#LUACFLAGS = -DLUA_BUILD_AS_DLL
+#LIBS = -lm
 
 RM = rm -f
 LUAC = luac
@@ -43,4 +48,4 @@ $(OBJS) : %.o : %.c
 	$(CC) $(CFLAGS) $(LUACFLAGS) $(INCFLAGS) -c -o $@ $<
 
 clean :
-	$(RM) $(LIBOBJS) $(OBJS) $(BIN) $(LC) $(INC)
+	$(RM) $(LIBOBJS) $(OBJS) $(BIN)
