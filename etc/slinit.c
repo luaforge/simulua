@@ -8,7 +8,7 @@
 #include <lauxlib.h>
 #include "simulua_lc.h"
 
-#define SIMULUA_HEAPNAME  "heap"
+#define SIMULUA_HEAPNAME  "binomial"
 #define SIMULUA_QUEUENAME "queue"
 #define SIMULUA_STACKNAME "stack"
 #define SIMULUA_RNGNAME   "rng"
@@ -29,11 +29,11 @@ static const luaL_Reg lualibs[] = {
   {LUA_STRLIBNAME, luaopen_string},
   {LUA_MATHLIBNAME, luaopen_math},
   {LUA_DBLIBNAME, luaopen_debug},
-  {SIMULUA_HEAPNAME, luaopen_binomial},
   {NULL, NULL}
 };
 
 static const luaL_Reg simulualibs[] = {
+  {SIMULUA_HEAPNAME, luaopen_binomial},
   {SIMULUA_QUEUENAME, luaopen_queue},
   {SIMULUA_STACKNAME, luaopen_stack},
   {SIMULUA_RNGNAME, luaopen_rng},
